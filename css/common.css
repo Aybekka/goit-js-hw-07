@@ -1,13 +1,312 @@
-.gallery {
-    display: flex;
-    gap: 16px;
-    list-style: none;
-    padding: 0;
+/* common.css */
+
+/* ============ Base ============ */
+:root {
+    --bg: #f5f5f5;
+    --card: #ffffff;
+    --text: #2e2f42;
+    --muted: #6b6f8a;
+
+    --border: #d9d9d9;
+    --border-strong: #bdbdbd;
+
+    --primary: #4e75ff;
+    /* mavi */
+    --primary-hover: #6c8cff;
+
+    --danger: #ff4e4e;
+    /* kırmızı */
+    --danger-hover: #ff7070;
+
+    --shadow: 0 6px 18px rgba(46, 47, 66, 0.12);
+    --radius: 8px;
 }
 
-.gallery-item img {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.4;
+}
+
+/* Center all pages content like in Figma */
+body> :not(script) {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* small top spacing like figma */
+p {
+    margin: 24px 0 16px;
+}
+
+/* Links */
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ============ Index page list ============ */
+body>ul {
+    list-style: none;
+    padding: 28px;
+    margin: 24px auto;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    width: fit-content;
+}
+
+body>ul li+li {
+    margin-top: 10px;
+}
+
+body>ul a {
+    font-weight: 600;
+}
+
+/* ============ Card containers used by tasks ============ */
+#categories,
+.gallery,
+.widget,
+.login-form,
+#controls,
+#boxes {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+#categories,
+.widget,
+.login-form {
+    padding: 24px;
+}
+
+.gallery {
+    padding: 24px;
+}
+
+/* ============ Inputs ============ */
+input {
+    font: inherit;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    padding: 8px 12px;
+    outline: none;
+    background: #fff;
+}
+
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(78, 117, 255, 0.18);
+}
+
+/* Task-3 input + title area */
+#name-input {
     display: block;
+    width: 320px;
+    margin: 24px auto 12px;
+}
+
+h1 {
+    margin: 0 auto 24px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ============ Buttons ============ */
+button {
+    font: inherit;
+    border: 0;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 120ms ease, background-color 120ms ease, opacity 120ms ease;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button[type="submit"],
+.change-color,
+button[data-create] {
+    background: var(--primary);
+    color: #fff;
+}
+
+button[type="submit"]:hover,
+.change-color:hover,
+button[data-create]:hover {
+    background: var(--primary-hover);
+}
+
+button[data-destroy] {
+    background: var(--danger);
+    color: #fff;
+}
+
+button[data-destroy]:hover {
+    background: var(--danger-hover);
+}
+
+/* ============ Task-1 Categories ============ */
+#categories {
+    list-style: none;
+    margin: 24px auto;
+    padding: 24px;
+    width: 420px;
+}
+
+#categories .item+.item {
+    margin-top: 16px;
+}
+
+#categories h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+}
+
+#categories .item>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#categories .item>ul li {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    background: #f8f8ff;
+}
+
+#categories .item>ul li+li {
+    margin-top: 8px;
+}
+
+/* ============ Task-2 Gallery ============ */
+.gallery {
+    list-style: none;
+    margin: 24px auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.gallery li {
+    margin: 0;
+}
+
+.gallery img {
     width: 100%;
-    max-width: 300px;
-    height: auto;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius);
+}
+
+/* ============ Task-4 Login form ============ */
+.login-form {
+    width: 420px;
+    margin: 24px auto;
+    display: grid;
+    gap: 14px;
+}
+
+.login-form label {
+    display: grid;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.login-form input {
+    width: 100%;
+}
+
+.login-form button {
+    justify-self: start;
+}
+
+/* ============ Task-5 Widget ============ */
+.widget {
+    width: 420px;
+    margin: 24px auto;
+    text-align: center;
+}
+
+.widget p {
+    margin: 0 0 16px;
+    color: var(--muted);
+}
+
+.widget .color {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* ============ Task-6 Controls + Boxes ============ */
+#controls {
+    width: 520px;
+    margin: 24px auto 16px;
+    padding: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+#controls input[type="number"] {
+    width: 120px;
+    text-align: center;
+}
+
+#boxes {
+    width: 520px;
+    margin: 0 auto 40px;
+    padding: 18px;
+    min-height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    #categories,
+    .widget,
+    .login-form,
+    #controls,
+    #boxes {
+        width: calc(100% - 32px);
+    }
+
+    .gallery {
+        width: calc(100% - 32px);
+        grid-template-columns: 1fr;
+    }
+
+    #name-input {
+        width: calc(100% - 32px);
+    }
 }
