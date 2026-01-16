@@ -15,7 +15,6 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-// HTML string oluşturma
 const galleryMarkup = images
   .map(
     ({ url, alt }) =>
@@ -25,5 +24,4 @@ const galleryMarkup = images
   )
   .join("");
 
-// 👉 Tek ekleme işlemi
 gallery.insertAdjacentHTML("beforeend", galleryMarkup);
